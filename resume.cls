@@ -53,6 +53,7 @@
   \RequirePackage{xeCJK}
 }{}
 \RequirePackage{microtype}
+\RequirePackage{tabularray}
 
 %
 % Hyperref
@@ -314,7 +315,7 @@
   \ifdef{\@photodiameter}{
     \begin{minipage}{\@photodiameter}
       \tikz\path[fill overzoom image={\@photo}]
-        circle[radius=0.5\linewidth];
+        circle[radius=0.6\linewidth];
     \end{minipage}
     \hspace{1em}
   }{}
@@ -375,18 +376,22 @@
 %%
 
 % \begin{competences}[width]
-\NewDocumentEnvironment{competences}{o}{%
-  \IfValueTF{#1}{%
-    \begin{tabular}{R{#1} L{\dimexpr \textwidth - #1 - 4\tabcolsep}}
+\NewDocumentEnvironment{competences}{s}{%
+  \IfBooleanTF{#1}{%
+    \begin{tabular}{R{\dimexpr \leftcolwidth} L{\dimexpr \rightcolwidth / 2 - \leftcolwidth} R{\leftcolwidth} L{\dimexpr \rightcolwidth / 2 - \leftcolwidth}}
   }{%
-    \begin{tabular}{R{\leftcolwidth} L{\rightcolwidth}}
+    \begin{tabular}{R{2.5em} L{\rightcolwidth}}
   }
 }{%
   \end{tabular}
 }
 
-\NewDocumentCommand{\comptence}{m m}{
-  \textbf{#1} & #2 \\
+\NewDocumentCommand{\comptence}{ s m m }{
+  \IfBooleanTF{#1}{
+  \textbf{#2} & #3 
+  }{
+  \textbf{#2} & #3 \\    
+  }
 }
 
 %%

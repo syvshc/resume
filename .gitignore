@@ -12,3 +12,6 @@ dist/
 *.tar.bz2
 resume-en.pdf
 resume-zh.pdf
+
+.history/
+*.synctex.gz
